@@ -4,6 +4,7 @@
     .qq-slider-wrap {
         // width: 500%;
         display: flex;
+        transition: .3s;
     }
     .qq-slider-item {
         flex-basis: 100%;
