@@ -1,10 +1,15 @@
-(function(){
+(function () {
 
     fetch('../json/rec.json')
         .then(res => res.json())
         .then(render)
 
-    function render(json){
+    fetch('../json/rank.json')
+        .then(res => res.json())
+        .then(json => json.data.topList)
+        .then(renderTopList)
+
+    function render(json) {
         renderSlider(json.data.slider)
         renderRadios(json.data.radioList)
         renderHotlists(json.data.songList)
@@ -18,7 +23,7 @@
         new Slider({
             el: document.querySelector('#slider'),
             slides
-        })        
+        })
     }
 
     function renderRadios(radios) {
@@ -42,7 +47,35 @@
                 </div>
                 <div class="list-title">${list.songListDesc}</div>
             </div>        
-        `).join('')        
+        `).join('')
     }
 
+    function renderTopList(list) {
+        console.log(list)
+        document.querySelector('.rank-view .toplist').innerHTML = list.map(item => `
+            <li class="top-item">
+                <div class="top-item-media">
+                    <a href="#">
+                        <img data-src="${item.picUrl}">
+                    </a>
+                </div>
+                <div class="top-item-info">
+                    <h3 class="top-item-title ellipsis">${item.topTitle}</h3>
+                    <ul class="top-item-list">
+                        ${songList(item.songList)}                                               
+                    </ul>
+                </div>
+            </li>         
+        `).join('')
+
+        function songList(songs) {
+            return songs.map((song, index) => `
+                <li class="top-item-song">
+                    <i class="song-index">${index + 1}</i>
+                    <span class="song-name">${song.songname}</span>- ${song.singername}
+                </li>             
+            `).join('')
+        }
+
+    }
 })()

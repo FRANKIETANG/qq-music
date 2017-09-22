@@ -4,9 +4,12 @@
 body {
   margin: 0; }
 
-h1, h2 {
+h1, h2, h3 {
   margin: 0;
   font-weight: normal; }
+
+i {
+  font-style: normal; }
 
 ul, li {
   margin: 0;
@@ -103,6 +106,51 @@ ul, li {
 
 .hide {
   display: none; }
+
+.rank-view {
+  margin: 10px; }
+  .rank-view .toplist {
+    margin-bottom: 50px; }
+    .rank-view .toplist .top-item {
+      height: 100px;
+      background: #fff;
+      margin-bottom: 10px; }
+    .rank-view .toplist .top-item-media {
+      float: left; }
+      .rank-view .toplist .top-item-media img {
+        width: 100px;
+        height: 100px;
+        display: block; }
+    .rank-view .toplist .top-item-info {
+      position: relative;
+      padding: 7px 10px 6px 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; }
+    .rank-view .toplist .top-item-title {
+      color: #000;
+      font-size: 16px;
+      font-weight: normal;
+      margin-bottom: 6px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
+    .rank-view .toplist .top-item-list {
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.5); }
+      .rank-view .toplist .top-item-list .top-item-song {
+        height: 20px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis; }
+      .rank-view .toplist .top-item-list .song-index {
+        float: left;
+        min-width: 10px;
+        text-align: center; }
+      .rank-view .toplist .top-item-list .song-name {
+        color: #000;
+        margin-left: 8px;
+        margin-right: 5px; }
 
 body {
   background: #f4f4f4; }
