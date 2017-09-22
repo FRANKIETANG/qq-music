@@ -1,5 +1,5 @@
-.radios{
-    margin: 14px 10px;
+.radios, .hotlists{
+    margin: 14px 0 10px 10px;
     .title {
         font-size: 16px;
         margin-bottom: 11px;  
@@ -10,18 +10,18 @@
         flex-wrap: wrap;
         .list-item{
             flex: 1;
-            font-size: 14px;
+            flex-basis: 40%;
+            font-size: 12px;
             background: #fff;
+            margin-right: 10px;
+            margin-bottom: 10px;
             .list-madia{
                 position: relative;
             }
             .list-title{
                 height: 36px;
-                margin-top: 7px;
+                margin: 7px;
                 padding: 0 5px;
-            }
-            &:first-child{
-                margin-right: 8px;
             }
             .icon{
                 background-image: url('../images/icon_play&pause.png');

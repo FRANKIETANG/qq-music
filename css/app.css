@@ -13,39 +13,40 @@ ul, li {
   padding: 0;
   list-style: none; }
 
-.radios {
-  margin: 14px 10px; }
-  .radios .title {
+.radios, .hotlists {
+  margin: 14px 0 10px 10px; }
+  .radios .title, .hotlists .title {
     font-size: 16px;
     margin-bottom: 11px;
     color: #000; }
-  .radios .list {
+  .radios .list, .hotlists .list {
     display: flex;
     flex-wrap: wrap; }
-    .radios .list .list-item {
+    .radios .list .list-item, .hotlists .list .list-item {
       flex: 1;
-      font-size: 14px;
-      background: #fff; }
-      .radios .list .list-item .list-madia {
+      flex-basis: 40%;
+      font-size: 12px;
+      background: #fff;
+      margin-right: 10px;
+      margin-bottom: 10px; }
+      .radios .list .list-item .list-madia, .hotlists .list .list-item .list-madia {
         position: relative; }
-      .radios .list .list-item .list-title {
+      .radios .list .list-item .list-title, .hotlists .list .list-item .list-title {
         height: 36px;
-        margin-top: 7px;
+        margin: 7px;
         padding: 0 5px; }
-      .radios .list .list-item:first-child {
-        margin-right: 8px; }
-      .radios .list .list-item .icon {
+      .radios .list .list-item .icon, .hotlists .list .list-item .icon {
         background-image: url("../images/icon_play&pause.png");
         background-repeat: no-repeat;
         background-size: 24px 60px; }
-      .radios .list .list-item .icon_play {
+      .radios .list .list-item .icon_play, .hotlists .list .list-item .icon_play {
         height: 24px;
         bottom: 5px;
         right: 5px;
         width: 24px;
         position: absolute;
         background-position: 0 0; }
-      .radios .list .list-item img {
+      .radios .list .list-item img, .hotlists .list .list-item img {
         width: 100%;
         display: block; }
 
