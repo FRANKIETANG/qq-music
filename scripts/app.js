@@ -1,16 +1,17 @@
 (function(){
 
-    let slider = new Slider({
-        el: document.querySelector('#slider'),
-        slides: [
-            { link: '#1', image: './images/fangdan.jpg' },
-            { link: '#2', image: './images/alin.jpg' },
-            { link: '#3', image: './images/lrh.jpg' },
-            { link: '#4', image: './images/luhan.jpg' },
-            { link: '#5', image: './images/tong.jpg' }
-        ]
-    })
+    fetch('../json/rec.json')
+        .then(res => res.json())
+        .then(render)
 
-    window.slider = slider
+    function render(json){
+        let slides = json.data.slider.map(slide => {
+            return { link: slide.linkUrl, image: slide.picUrl }
+        })
+        new Slider({
+            el: document.querySelector('#slider'),
+            slides
+        })
+    }
 
 })()
