@@ -1,0 +1,45 @@
+.radios{
+    margin: 14px 10px;
+    .title {
+        font-size: 16px;
+        margin-bottom: 11px;  
+        color: #000;      
+    }
+    .list{
+        display: flex;
+        flex-wrap: wrap;
+        .list-item{
+            flex: 1;
+            font-size: 14px;
+            background: #fff;
+            .list-madia{
+                position: relative;
+            }
+            .list-title{
+                height: 36px;
+                margin-top: 7px;
+                padding: 0 5px;
+            }
+            &:first-child{
+                margin-right: 8px;
+            }
+            .icon{
+                background-image: url('../images/icon_play&pause.png');
+                background-repeat: no-repeat;
+                background-size: 24px 60px;
+            }
+            .icon_play{
+                height: 24px;
+                bottom: 5px;
+                right: 5px;
+                width: 24px;
+                position: absolute;
+                background-position: 0 0;
+            }
+            img{
+                width: 100%;
+                display: block;
+            }
+        }  
+    }
+}

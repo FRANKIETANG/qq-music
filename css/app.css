@@ -4,13 +4,50 @@
 body {
   margin: 0; }
 
-h1 {
-  margin: 0; }
+h1, h2 {
+  margin: 0;
+  font-weight: normal; }
 
 ul, li {
   margin: 0;
   padding: 0;
   list-style: none; }
+
+.radios {
+  margin: 14px 10px; }
+  .radios .title {
+    font-size: 16px;
+    margin-bottom: 11px;
+    color: #000; }
+  .radios .list {
+    display: flex;
+    flex-wrap: wrap; }
+    .radios .list .list-item {
+      flex: 1;
+      font-size: 14px;
+      background: #fff; }
+      .radios .list .list-item .list-madia {
+        position: relative; }
+      .radios .list .list-item .list-title {
+        height: 36px;
+        margin-top: 7px;
+        padding: 0 5px; }
+      .radios .list .list-item:first-child {
+        margin-right: 8px; }
+      .radios .list .list-item .icon {
+        background-image: url("../images/icon_play&pause.png");
+        background-repeat: no-repeat;
+        background-size: 24px 60px; }
+      .radios .list .list-item .icon_play {
+        height: 24px;
+        bottom: 5px;
+        right: 5px;
+        width: 24px;
+        position: absolute;
+        background-position: 0 0; }
+      .radios .list .list-item img {
+        width: 100%;
+        display: block; }
 
 #header {
   display: flex;
