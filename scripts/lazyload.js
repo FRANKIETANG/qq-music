@@ -1,21 +1,36 @@
 function lazyload(images) {
     let imgs = [].slice.call(images)
 
-    let onscroll=throttle(function onscroll() {
-        console.log(new Date)
-        if (imgs.length === 0) {
-            return window.removeEventListener('scroll', onscroll)
-        }
-        imgs = imgs.filter(img => img.classList.contains('lazyload'))
-        imgs.forEach(img => {
-            if (inViewport(img)) {
-                loadImage(img)
+    if('IntersectionObserver' in window){
+        let observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry=>{
+                if(entry.intersectionRatio>0){
+                    loadImage(entry.target,()=>{
+                        observer.unobserve(entry.target)
+                    })
+                }
+            })
+        },{threshold:0.01})
+        imgs.forEach(img=>observer.observe(img))
+    }else{
+        let onscroll=throttle(function onscroll() {
+            console.log(new Date)
+            if (imgs.length === 0) {
+                return window.removeEventListener('scroll', onscroll)
             }
-        })
-    },300)   
+            imgs = imgs.filter(img => img.classList.contains('lazyload'))
+            imgs.forEach(img => {
+                if (inViewport(img)) {
+                    loadImage(img)
+                }
+            })
+        },300)   
+    
+        window.addEventListener('scroll', onscroll)
+        window.dispatchEvent(new Event('scroll'))
+    }
 
-    window.addEventListener('scroll', onscroll)
-    window.dispatchEvent(new Event('scroll'))
+
 
     //节流
     function throttle(func,wait){
@@ -44,12 +59,13 @@ function lazyload(images) {
         )
     }
 
-    function loadImage(img) {
+    function loadImage(img,callback) {
         let images = new Image()
         images.src = img.dataset.src
         images.onload = function () {
             img.src = images.src
             img.classList.remove('lazyload')
+            if(typeof callback === 'function') callback()
         }
     }
 }
