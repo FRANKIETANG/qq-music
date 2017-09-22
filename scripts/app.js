@@ -56,7 +56,7 @@
             <li class="top-item">
                 <div class="top-item-media">
                     <a href="#">
-                        <img data-src="${item.picUrl}">
+                        <img class="lazyload" data-src="${item.picUrl}">
                     </a>
                 </div>
                 <div class="top-item-info">
@@ -67,6 +67,8 @@
                 </div>
             </li>         
         `).join('')
+
+        lazyload(document.querySelectorAll('.rank-view .toplist .lazyload'))
 
         function songList(songs) {
             return songs.map((song, index) => `
