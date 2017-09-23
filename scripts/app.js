@@ -1,6 +1,6 @@
 (function () {
 
-    fetch('../json/rec.json')
+    fetch('../json/rec.json') //https://qq-music-api.now.sh
         .then(res => res.json())
         .then(render)
 

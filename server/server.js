@@ -1,4 +1,4 @@
-var PORT = 3000;//端口号
+var PORT = 3001;//端口号
 
 var http = require('http');//协议
 var url=require('url');//读取路径模块

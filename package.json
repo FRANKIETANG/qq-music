@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/FRANKIETANG/qq-music/issues"
   },
-  "homepage": "https://github.com/FRANKIETANG/qq-music#readme"
+  "homepage": "https://github.com/FRANKIETANG/qq-music#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "request": "^2.82.0",
+    "request-promise": "^4.2.2"
+  }
 }
