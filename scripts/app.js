@@ -4,7 +4,7 @@
         .then(res => res.json())
         .then(render)
 
-    fetch('https://qq-music-api-krplcorlls.now.sh')
+    fetch('https://qq-music-api-krplcorlls.now.sh/top')
         .then(res => res.json())
         .then(json => json.data.topList)
         .then(renderTopList)
