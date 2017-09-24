@@ -6,7 +6,7 @@ class Search {
         this.$songs = this.$el.querySelector('.song-list')
         this.keyword = ''
         this.page = 1
-        this.song = []
+        this.songs = []
         this.perpage = 20
         this.nomore = false
         this.fetching = false
@@ -33,6 +33,7 @@ class Search {
         this.page = 1
         this.keyword = ''
         this.songs = []
+        this.nomore = false
         this.$songs.innerHTML = ''
     }
 
@@ -45,6 +46,7 @@ class Search {
             .then(json => {
                 this.page = json.data.song.curpage
                 this.nomore = (json.message === 'no results')
+                this.songs.push(...json.data.song.list)
                 return json.data.song.list
             })
             .then(songs => this.append(songs))
