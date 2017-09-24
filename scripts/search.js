@@ -13,8 +13,15 @@ class Search {
     onKeyUp(event){
         console.log(this)
         let keyword = event.target.value.trim() //trim() 前后空格去掉
+        if (!keyword) return this.reset()
         if (event.key !== 'Enter') return
         this.search(keyword)
+    }
+
+    reset(){
+        this.page = 1
+        this.keyword = ''
+        this.songs = []
     }
 
     search(keyword){
