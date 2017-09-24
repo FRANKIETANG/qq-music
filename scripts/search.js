@@ -22,6 +22,7 @@ class Search {
         this.page = 1
         this.keyword = ''
         this.songs = []
+        this.$songs.innerHTML = ''
     }
 
     search(keyword){
