@@ -40,7 +40,7 @@ class Search {
     search(keyword, page){
         if (this.fetching) return
         this.keyword = keyword
-        this.fetching = true
+        this.loading()
         fetch(`http://localhost:4000/search?keyword=${this.keyword}&page=${page || this.page}`)
             .then(res => res.json())
             .then(json => {
@@ -50,7 +50,7 @@ class Search {
                 return json.data.song.list
             })
             .then(songs => this.append(songs))
-            .then(() => this.fetching = false)
+            .then(() => this.done())
             .catch(() => this.fetching = false)
     }
 
@@ -63,6 +63,23 @@ class Search {
             </a>        
         `).join('')
         this.$songs.insertAdjacentHTML('beforeend', html)
+    }
+
+    loading(){
+        this.fetching = true
+        this.$el.querySelector('.search-loading').classList.add('show')
+    }
+
+    done(){
+        this.fetching = false
+        if (this.nomore) {
+            this.$el.querySelector('.loading-icon').style.display = 'none'
+            this.$el.querySelector('.loading-text').style.display = 'none'
+            this.$el.querySelector('.loading-done').style.display = 'block'
+            this.$el.querySelector('.search-loading').classList.add('show')
+        } else {
+            this.$el.querySelector('.search-loading').classList.remove('show')
+        }
     }
 
 }
