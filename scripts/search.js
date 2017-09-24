@@ -8,6 +8,10 @@ class Search {
         this.page = 1
         this.song = []
         this.perpage = 20
+        this.nomore = false
+        this.fetching = false
+        this.onscroll = this.onScroll.bind(this)
+        window.addEventListener('scroll', this.onscroll)
     }
 
     onKeyUp(event){
@@ -18,6 +22,13 @@ class Search {
         this.search(keyword)
     }
 
+    onScroll(event){
+        if (this.nomore) return
+        if (document.documentElement.clientHeight + pageYOffset > document.body.scrollHeight - 50) {
+            this.search(this.keyword, this.page + 1)
+        }
+    }
+
     reset(){
         this.page = 1
         this.keyword = ''
@@ -25,12 +36,20 @@ class Search {
         this.$songs.innerHTML = ''
     }
 
-    search(keyword){
+    search(keyword, page){
+        if (this.fetching) return
         this.keyword = keyword
-        fetch(`http://localhost:4000/search?keyword=${this.keyword}&page=${this.page}`)
+        this.fetching = true
+        fetch(`http://localhost:4000/search?keyword=${this.keyword}&page=${page || this.page}`)
             .then(res => res.json())
-            .then(json => json.data.song.list)
+            .then(json => {
+                this.page = json.data.song.curpage
+                this.nomore = (json.message === 'no results')
+                return json.data.song.list
+            })
             .then(songs => this.append(songs))
+            .then(() => this.fetching = false)
+            .catch(() => this.fetching = false)
     }
 
     append(songs){
