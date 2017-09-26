@@ -18,6 +18,12 @@
 
     let search = new Search(document.querySelector('.search-view'))
 
+    let player = new MusicPlayer(document.querySelector('.player'))
+
+    document.querySelector('.show-player').addEventListener('click', () => {
+        player.show()
+    })
+
     function renderSlider(slides) {
         slides = slides.map(slide => {
             return { link: slide.linkUrl, image: slide.picUrl }

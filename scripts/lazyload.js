@@ -1,19 +1,19 @@
 function lazyload(images) {
     let imgs = [].slice.call(images)
 
-    if('IntersectionObserver' in window){
-        let observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry=>{
-                if(entry.intersectionRatio>0){
-                    loadImage(entry.target,()=>{
+    if ('IntersectionObserver' in window) {
+        let observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.intersectionRatio > 0) {
+                    loadImage(entry.target, () => {
                         observer.unobserve(entry.target)
                     })
                 }
             })
-        },{threshold:0.01})
-        imgs.forEach(img=>observer.observe(img))
-    }else{
-        let onscroll=throttle(function onscroll() {
+        }, { threshold: 0.01 })
+        imgs.forEach(img => observer.observe(img))
+    } else {
+        let onscroll = throttle(function onscroll() {
             console.log(new Date)
             if (imgs.length === 0) {
                 return window.removeEventListener('scroll', onscroll)
@@ -24,8 +24,8 @@ function lazyload(images) {
                     loadImage(img)
                 }
             })
-        },300)   
-    
+        }, 300)
+
         window.addEventListener('scroll', onscroll)
         window.dispatchEvent(new Event('scroll'))
     }
@@ -33,17 +33,17 @@ function lazyload(images) {
 
 
     //节流
-    function throttle(func,wait){
+    function throttle(func, wait) {
         let prev, timer
-        return function fn(){
+        return function fn() {
             let curr = Date.now()
             let diff = curr - prev
-            if(!prev||diff>=wait){
+            if (!prev || diff >= wait) {
                 func()
                 prev = curr
-            }else if(diff<wait){
+            } else if (diff < wait) {
                 clearTimeout(timer)
-                timer=setTimeout(fn,wait-diff)
+                timer = setTimeout(fn, wait - diff)
             }
         }
     }
@@ -59,13 +59,13 @@ function lazyload(images) {
         )
     }
 
-    function loadImage(img,callback) {
+    function loadImage(img, callback) {
         let images = new Image()
         images.src = img.dataset.src
         images.onload = function () {
             img.src = images.src
             img.classList.remove('lazyload')
-            if(typeof callback === 'function') callback()
+            if (typeof callback === 'function') callback()
         }
     }
 }

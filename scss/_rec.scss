@@ -1,34 +1,35 @@
-.radios, .hotlists{
+.radios,
+.hotlists {
     margin: 14px 0 10px 10px;
     .title {
         font-size: 16px;
-        margin-bottom: 11px;  
-        color: #000;      
+        margin-bottom: 11px;
+        color: #000;
     }
-    .list{
+    .list {
         display: flex;
         flex-wrap: wrap;
-        .list-item{
+        .list-item {
             flex: 1;
             flex-basis: 40%;
             font-size: 12px;
             background: #fff;
             margin-right: 10px;
             margin-bottom: 10px;
-            .list-madia{
+            .list-madia {
                 position: relative;
             }
-            .list-title{
+            .list-title {
                 height: 36px;
                 margin: 7px;
                 padding: 0 5px;
             }
-            .icon{
+            .icon {
                 background-image: url('../images/icon_play&pause.png');
                 background-repeat: no-repeat;
                 background-size: 24px 60px;
             }
-            .icon_play{
+            .icon_play {
                 height: 24px;
                 bottom: 5px;
                 right: 5px;
@@ -36,11 +37,11 @@
                 position: absolute;
                 background-position: 0 0;
             }
-            img{
+            img {
                 width: 100%;
                 display: block;
                 min-height: 145px;
             }
-        }  
+        }
     }
 }

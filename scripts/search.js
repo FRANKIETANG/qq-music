@@ -1,8 +1,8 @@
 class Search {
-    constructor(el){
+    constructor(el) {
         this.$el = el
         this.$input = this.$el.querySelector('#search')
-        this.$input.addEventListener('keyup',this.onKeyUp.bind(this)) 
+        this.$input.addEventListener('keyup', this.onKeyUp.bind(this))
         this.$songs = this.$el.querySelector('.song-list')
         this.keyword = ''
         this.page = 1
@@ -14,7 +14,7 @@ class Search {
         window.addEventListener('scroll', this.onscroll)
     }
 
-    onKeyUp(event){
+    onKeyUp(event) {
         console.log(this)
         let keyword = event.target.value.trim() //trim() 前后空格去掉
         if (!keyword) return this.reset()
@@ -22,14 +22,14 @@ class Search {
         this.search(keyword)
     }
 
-    onScroll(event){
+    onScroll(event) {
         if (this.nomore) return
         if (document.documentElement.clientHeight + pageYOffset > document.body.scrollHeight - 50) {
             this.search(this.keyword, this.page + 1)
         }
     }
 
-    reset(){
+    reset() {
         this.page = 1
         this.keyword = ''
         this.songs = []
@@ -37,7 +37,7 @@ class Search {
         this.$songs.innerHTML = ''
     }
 
-    search(keyword, page){
+    search(keyword, page) {
         if (this.fetching) return
         this.keyword = keyword
         this.loading()
@@ -54,7 +54,7 @@ class Search {
             .catch(() => this.fetching = false)
     }
 
-    append(songs){
+    append(songs) {
         let html = songs.map(song => `
             <a class="song-item" href="#player?artist=David Guetta Justin Bieber&songid=202712996&songname=2U&albummid=0008u6bN048czH&duration=194">
                 <i class="icon icon-music"></i>
@@ -65,12 +65,12 @@ class Search {
         this.$songs.insertAdjacentHTML('beforeend', html)
     }
 
-    loading(){
+    loading() {
         this.fetching = true
         this.$el.querySelector('.search-loading').classList.add('show')
     }
 
-    done(){
+    done() {
         this.fetching = false
         if (this.nomore) {
             this.$el.querySelector('.loading-icon').style.display = 'none'
