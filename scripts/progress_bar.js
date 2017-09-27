@@ -1,0 +1,49 @@
+class ProgressBar {
+    constructor(el, duration, start) {
+        this.$el = el
+        this.elapsed = 0 //已播放时间
+        this.duration = duration || 0 //总时间
+        this.progress = 0 // elapsed/duration
+        this.render()
+        this.$progress = this.$el.querySelector('.progress-bar-progress')
+        this.$elapsed = this.$el.querySelector('.progress-elapsed')
+        this.$duration = this.$el.querySelector('.progress-duration')
+        this.$elapsed.innerText = this.formatTime(this.elapsed)
+        this.$duration.innerText = this.formatTime(this.duration)
+        if(start) this.start()
+    }
+
+    start() {
+        this.intervalId = setInterval(this.update.bind(this), 1000)
+    }
+
+    pause() {
+        clearInterval(this.intervalId)
+    }
+
+    update() {
+        console.log('update')
+        this.elapsed += 1
+        this.progress = this.elapsed / this.duration
+        this.$progress.style.transform = `translate(${this.progress * 100 - 100}%)`
+        this.$elapsed.innerText = this.formatTime(this.elapsed)
+    }
+
+    render() {
+        this.$el.innerHTML = `
+            <div class="progress-time progress-elapsed"></div>
+                <div class="progress-bar">
+                    <div class="progress-bar-progress"></div>
+                </div>
+            <div class="progress-time progress-duration"></div>          
+        `
+    }
+
+    formatTime(seconds) {
+        let mins = Math.floor(seconds / 60)
+        let secs = Math.floor(seconds % 60)
+        if (mins < 10) mins = '0' + mins
+        if (secs < 10) secs = '0' + secs
+        return `${mins}:${secs}`
+    }
+}

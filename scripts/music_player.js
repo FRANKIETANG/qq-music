@@ -3,10 +3,14 @@ class MusicPlayer {
         this.$el = el
         this.$el.addEventListener('click', this)
         this.createAudio()
+        this.progress = new ProgressBar(this.$el.querySelector('.progress'), 280, true)
     }
 
     createAudio() {
-
+        this.$audio = document.createElement('audio')
+        this.$audio.loop = true
+        this.$audio.id = `player-${Math.floor(Math.random() * 100)}-${+new Date()}`
+        document.body.appendChild(this.$audio)
     }
 
     handleEvent(event) {
@@ -17,7 +21,7 @@ class MusicPlayer {
                 break
             case target.matches('.icon-pause'):
                 this.onPause(event)
-                break 
+                break
         }
     }
 
