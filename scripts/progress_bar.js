@@ -40,6 +40,11 @@ class ProgressBar {
         }
     }
 
+    restart() {
+        this.reset()
+        this.start()
+    }    
+
     render() {
         this.$el.innerHTML = `
             <div class="progress-time progress-elapsed"></div>

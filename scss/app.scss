@@ -11,3 +11,7 @@
 body {
     background: $body-background;
 }
+
+.noscroll {
+    overflow: hidden;
+}

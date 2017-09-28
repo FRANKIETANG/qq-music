@@ -9,8 +9,13 @@ class MusicPlayer {
 
     createAudio() {
         this.$audio = document.createElement('audio')
-        this.$audio.loop = true
+        // this.$audio.loop = true
         this.$audio.id = `player-${Math.floor(Math.random() * 100)}-${+new Date()}`
+        this.$audio.onended = () => {
+            this.$audio.play()
+            this.lyrics.restart()
+            this.progress.restart()
+        }
         document.body.appendChild(this.$audio)
     }
 
@@ -72,10 +77,12 @@ class MusicPlayer {
 
     show() {
         this.$el.classList.add('show')
+        document.body.classList.add('noscroll')
     }
 
     hide() {
         this.$el.classList.remove('show')
+        document.body.classList.remove('noscroll')
     }
 
 }
