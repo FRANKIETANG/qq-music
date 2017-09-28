@@ -35,7 +35,7 @@ class ProgressBar {
         this.elapsed = 0
         this.progress = 0
         if (duration) {
-            this.duration = duration //+
+            this.duration = +duration //+ 变成一个数字
             this.$duration.innerText = this.formatTime(this.duration)
         }
     }
