@@ -24,6 +24,8 @@
         player.show()
     })
 
+    window.player = player
+
     function renderSlider(slides) {
         slides = slides.map(slide => {
             return { link: slide.linkUrl, image: slide.picUrl }

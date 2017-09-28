@@ -3,7 +3,7 @@ class MusicPlayer {
         this.$el = el
         this.$el.addEventListener('click', this)
         this.createAudio()
-        this.progress = new ProgressBar(this.$el.querySelector('.progress'), 280, true)
+        this.progress = new ProgressBar(this.$el.querySelector('.progress'), 3, true)
     }
 
     createAudio() {
@@ -21,6 +21,9 @@ class MusicPlayer {
                 break
             case target.matches('.icon-pause'):
                 this.onPause(event)
+                break
+            case target.matches('.icon-list'):
+                this.hide()
                 break
         }
     }
@@ -42,11 +45,11 @@ class MusicPlayer {
     }
 
     show() {
-
+        this.$el.classList.add('show')
     }
 
     hide() {
-
+        this.$el.classList.remove('show')
     }
 
 }
