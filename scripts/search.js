@@ -55,13 +55,16 @@ class Search {
     }
 
     append(songs) {
-        let html = songs.map(song => `
-            <a class="song-item" href="#player?artist=David Guetta Justin Bieber&songid=202712996&songname=2U&albummid=0008u6bN048czH&duration=194">
+        `#player?artist=David Guetta Justin Bieber&songid=202712996&songname=2U&albummid=0008u6bN048czH&duration=194`
+        let html = songs.map(song => {
+            let artist = song.singer.map(s => s.name).join(' ')
+            return `
+            <a class="song-item" href="#player?artist=${artist}&songid=${song.songid}&songname=${song.songname}&albummid=${song.albummid}&duration=${song.interval}">
                 <i class="icon icon-music"></i>
                 <div class="song-name ellipsis">${song.songname}</div>
                 <div class="song-artist ellipsis">${song.singer.map(s => s.name).join(' ')}</div>
             </a>        
-        `).join('')
+        `}).join('')
         this.$songs.insertAdjacentHTML('beforeend', html)
     }
 
