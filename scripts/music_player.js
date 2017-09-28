@@ -4,7 +4,7 @@ class MusicPlayer {
         this.$el.addEventListener('click', this)
         this.createAudio()
         this.lyrics = new LyricsPlayer(this.$el.querySelector('.player-lyrics'))
-        this.progress = new ProgressBar(this.$el.querySelector('.progress'), 3, true)
+        this.progress = new ProgressBar(this.$el.querySelector('.progress'), 0, true)
     }
 
     createAudio() {
@@ -31,12 +31,18 @@ class MusicPlayer {
 
     onPlay(event) {
         console.log('onPlay')
+        this.$audio.play()
+        this.lyrics.start()
+        this.progress.start()
         event.target.classList.add('icon-pause')
         event.target.classList.remove('icon-play')
     }
 
     onPause(event) {
         console.log('onPause')
+        this.$audio.pause()
+        this.lyrics.pause()
+        this.progress.pause()
         event.target.classList.add('icon-play')
         event.target.classList.remove('icon-pause')
     }
