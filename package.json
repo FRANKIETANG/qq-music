@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server/server.js",
     "api": "node qq-server.js",
+    "sass": "sass --watch scss/:css/",
     "build": "node-sass --output-style compressed scss/app.scss > dist/app.css && autoprefixer-cli -o dist/app.css dist/app.css && ./node_modules/.bin/webpack -p --config webpack.config.js"
   },
   "repository": {

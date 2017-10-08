@@ -37,19 +37,61 @@
         background-size: cover;
         text-indent: -999px;
     }
+    .icon-delete {
+        position: absolute;
+        top: 9px;
+        right: 12px;
+        width: 18px;
+        height: 18px;
+        background: #b1b1b1;
+        text-indent: -9999px;
+        border-radius: 99px;
+    }
+    .icon-delete::before {
+        width: 10px;
+        height: 2px;
+        margin-left: -5px;
+        margin-top: -1px;
+    }
+    .icon-delete::after {
+        width: 2px;
+        height: 10px;
+        margin-left: -1px;
+        margin-top: -5px;
+    }    
+    .icon-delete::before,
+    .icon-delete::after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        border-radius: 8px;
+        background: #fff;
+        -webkit-transform: rotate(45deg);
+    }
+    .search-bar-tip-text{
+        padding-right: 10px;
+        padding-left: 10px;
+        font-size: 14px;
+        color: #555;
+        height: 36px;
+        line-height: 36px;
+    }
 }
+
 .hot-keys {
     background: #fff;
     padding: 15px 15px 10px 15px;
-    .result-tit{
+    .result-tit {
         color: rgba(0, 0, 0, .6);
         margin-bottom: 8px;
         font-size: 14px;
         font-weight: bold;
     }
-    .result-tags{
+    .result-tags {
         font-size: 0;
-        .tag{
+        .tag {
             display: inline-block;
             font-size: 14px;
             padding: 0 10px;
@@ -62,12 +104,13 @@
             margin-bottom: 10px;
             margin-right: 14px;
         }
-        .tag-hot{
+        .tag-hot {
             color: #fc4524;
-            border-color: #fc4524;            
+            border-color: #fc4524;
         }
     }
 }
+
 .search-results {
     .song-item {
         display: block;

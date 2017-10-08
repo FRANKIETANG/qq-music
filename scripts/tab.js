@@ -19,4 +19,10 @@ document.addEventListener('click', function (event) {
         content.style.display = 'block'
     }
 
+    if (target.dataset.view === '.search-view') {
+        document.body.style.background = '#fff'
+    } else {
+        document.body.style.background = '#f4f4f4'
+    }
+
 })

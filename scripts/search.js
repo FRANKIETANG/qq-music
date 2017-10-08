@@ -7,12 +7,11 @@ class Search {
         this.perpage = 20
         this.nomore = false
         this.fetching = false
-        this.onscroll = this.onScroll.bind(this)
         this.$input = this.$el.querySelector('#search')
         this.$songs = this.$el.querySelector('.song-list')
         this.$hotKey = this.$el.querySelector('.hot-keys')
         this.$input.addEventListener('keyup', this.onKeyUp.bind(this))
-        window.addEventListener('scroll', this.onscroll)
+        window.addEventListener('scroll', this.onScroll.bind(this))
     }
 
     onKeyUp(event) {
