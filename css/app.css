@@ -4,14 +4,17 @@
 body {
   margin: 0; }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin: 0;
   font-weight: normal; }
 
 i {
   font-style: normal; }
 
-ul, li {
+ul,
+li {
   margin: 0;
   padding: 0;
   list-style: none; }
@@ -19,40 +22,49 @@ ul, li {
 a {
   text-decoration: none; }
 
-.radios, .hotlists {
+.radios,
+.hotlists {
   margin: 14px 0 10px 10px; }
-  .radios .title, .hotlists .title {
+  .radios .title,
+  .hotlists .title {
     font-size: 16px;
     margin-bottom: 11px;
     color: #000; }
-  .radios .list, .hotlists .list {
+  .radios .list,
+  .hotlists .list {
     display: flex;
     flex-wrap: wrap; }
-    .radios .list .list-item, .hotlists .list .list-item {
+    .radios .list .list-item,
+    .hotlists .list .list-item {
       flex: 1;
       flex-basis: 40%;
       font-size: 12px;
       background: #fff;
       margin-right: 10px;
       margin-bottom: 10px; }
-      .radios .list .list-item .list-madia, .hotlists .list .list-item .list-madia {
+      .radios .list .list-item .list-madia,
+      .hotlists .list .list-item .list-madia {
         position: relative; }
-      .radios .list .list-item .list-title, .hotlists .list .list-item .list-title {
+      .radios .list .list-item .list-title,
+      .hotlists .list .list-item .list-title {
         height: 36px;
         margin: 7px;
         padding: 0 5px; }
-      .radios .list .list-item .icon, .hotlists .list .list-item .icon {
+      .radios .list .list-item .icon,
+      .hotlists .list .list-item .icon {
         background-image: url("../images/icon_play&pause.png");
         background-repeat: no-repeat;
         background-size: 24px 60px; }
-      .radios .list .list-item .icon_play, .hotlists .list .list-item .icon_play {
+      .radios .list .list-item .icon_play,
+      .hotlists .list .list-item .icon_play {
         height: 24px;
         bottom: 5px;
         right: 5px;
         width: 24px;
         position: absolute;
         background-position: 0 0; }
-      .radios .list .list-item img, .hotlists .list .list-item img {
+      .radios .list .list-item img,
+      .hotlists .list .list-item img {
         width: 100%;
         display: block;
         min-height: 145px; }
@@ -210,6 +222,32 @@ a {
     background-repeat: no-repeat;
     background-size: cover;
     text-indent: -999px; }
+
+.hot-keys {
+  background: #fff;
+  padding: 15px 15px 10px 15px; }
+  .hot-keys .result-tit {
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold; }
+  .hot-keys .result-tags {
+    font-size: 0; }
+    .hot-keys .result-tags .tag {
+      display: inline-block;
+      font-size: 14px;
+      padding: 0 10px;
+      height: 30px;
+      line-height: 30px;
+      color: #000;
+      border: 1px solid rgba(0, 0, 0, 0.6);
+      border-radius: 99px;
+      word-break: keep-all;
+      margin-bottom: 10px;
+      margin-right: 14px; }
+    .hot-keys .result-tags .tag-hot {
+      color: #fc4524;
+      border-color: #fc4524; }
 
 .search-results .song-item {
   display: block;
@@ -467,5 +505,8 @@ a {
 
 body {
   background: #f4f4f4; }
+
+.noscroll {
+  overflow: hidden; }
 
 /*# sourceMappingURL=app.css.map */

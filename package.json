@@ -4,7 +4,9 @@
   "description": "QQ Music",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack -p --config webpack.config.js"
+    "start": "node server/server.js",
+    "api": "node qq-server.js",
+    "build": "node-sass --output-style compressed scss/app.scss > dist/app.css && autoprefixer-cli -o dist/app.css dist/app.css && ./node_modules/.bin/webpack -p --config webpack.config.js"
   },
   "repository": {
     "type": "git",
