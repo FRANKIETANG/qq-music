@@ -9,6 +9,11 @@
         .then(json => json.data.topList)
         .then(renderTopList)
 
+    fetch('https://qq-music-api-krplcorlls.now.sh/hotkey')
+        .then(res => res.json())
+        .then(json => json.data)
+        .then(renderHotKeys)
+
     function render(json) {
         renderSlider(json.data.slider)
         renderRadios(json.data.radioList)
@@ -42,7 +47,7 @@
 
     onHashChange()
     window.addEventListener('hashchange', onHashChange)
-    
+
     window.player = player
 
     function renderSlider(slides) {
@@ -91,7 +96,7 @@
                 <div class="top-item-info">
                     <h3 class="top-item-title ellipsis">${item.topTitle}</h3>
                     <ul class="top-item-list">
-                        ${songList(item.songList)}                                               
+                        ${songList(item.songList)}  
                     </ul>
                 </div>
             </li>         
@@ -107,6 +112,28 @@
                 </li>             
             `).join('')
         }
+    }
 
+    function renderHotKeys(data) {
+        let keys = data.hotkey
+        let hotKeys = shuffle(keys, 6).map(hotKey => `
+            <a href="#" class="tag tag-keyword">${hotKey.k}</a>
+        `).join('')
+
+        document.querySelector('.result-tags').innerHTML = `<a href="${data.special_url}" class="tag tag-hot">${data.special_key}</a>` + hotKeys
+    }
+
+    function shuffle(array, count) {
+        let re = []
+        let len = Math.min(count, array.length)
+        for (let i = 0; i < len; i++) {
+            (function (i) {
+                var temp = array
+                var m = Math.floor(Math.random() * temp.length)
+                re[i] = temp[m]
+                array.splice(m, 1)
+            })(i)
+        }
+        return re
     }
 })()
