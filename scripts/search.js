@@ -1,9 +1,6 @@
 class Search {
     constructor(el) {
         this.$el = el
-        this.$input = this.$el.querySelector('#search')
-        this.$input.addEventListener('keyup', this.onKeyUp.bind(this))
-        this.$songs = this.$el.querySelector('.song-list')
         this.keyword = ''
         this.page = 1
         this.songs = []
@@ -11,6 +8,10 @@ class Search {
         this.nomore = false
         this.fetching = false
         this.onscroll = this.onScroll.bind(this)
+        this.$input = this.$el.querySelector('#search')
+        this.$songs = this.$el.querySelector('.song-list')
+        this.$hotKey = this.$el.querySelector('.hot-keys')
+        this.$input.addEventListener('keyup', this.onKeyUp.bind(this))
         window.addEventListener('scroll', this.onscroll)
     }
 
@@ -49,7 +50,10 @@ class Search {
                 this.songs.push(...json.data.song.list)
                 return json.data.song.list
             })
-            .then(songs => this.append(songs))
+            .then(songs => {
+                this.append(songs)
+                this.$hotKey.style.display = 'none'
+            })
             .then(() => this.done())
             .catch(() => this.fetching = false)
     }
