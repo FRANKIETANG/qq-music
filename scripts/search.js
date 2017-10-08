@@ -8,15 +8,40 @@ class Search {
         this.nomore = false
         this.fetching = false
         this.$input = this.$el.querySelector('#search')
+        this.$cancel = this.$el.querySelector('.search-bar-tip-text')
+        this.$delete = this.$el.querySelector('.icon-delete')
         this.$songs = this.$el.querySelector('.song-list')
         this.$hotKey = this.$el.querySelector('.hot-keys')
         this.$input.addEventListener('keyup', this.onKeyUp.bind(this))
+        window.addEventListener('click', this.onClick.bind(this))
         window.addEventListener('scroll', this.onScroll.bind(this))
+    }
+
+    onClick(e) {
+        if (e.target === this.$input) {
+            this.$cancel.classList.remove('hide')
+        }
+        if (e.target === this.$cancel) {
+            this.$cancel.classList.add('hide')
+            this.$delete.classList.add('hide')
+            this.reset()
+            this.$hotKey.style.display = 'block'
+            this.$input.value = ''
+        }
+        if (e.target === this.$delete) {
+            this.$input.value = ''
+            this.$delete.classList.add('hide')
+        }
     }
 
     onKeyUp(event) {
         console.log(this)
         let keyword = event.target.value.trim() //trim() 前后空格去掉
+        if (keyword) {
+            this.$delete.classList.remove('hide')
+        } else {
+            this.$delete.classList.add('hide')
+        }
         if (!keyword) return this.reset()
         if (event.key !== 'Enter') return
         this.search(keyword)
