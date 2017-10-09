@@ -7,30 +7,83 @@ class Search {
         this.perpage = 20
         this.nomore = false
         this.fetching = false
+        this.history = []
         this.$input = this.$el.querySelector('#search')
         this.$cancel = this.$el.querySelector('.search-bar-tip-text')
         this.$delete = this.$el.querySelector('.icon-delete')
         this.$songs = this.$el.querySelector('.song-list')
         this.$hotKey = this.$el.querySelector('.hot-keys')
+        this.$history = this.$el.querySelector('.record-keys')
         this.$input.addEventListener('keyup', this.onKeyUp.bind(this))
         window.addEventListener('click', this.onClick.bind(this))
         window.addEventListener('scroll', this.onScroll.bind(this))
+
+        this.HISTORY_KEY = 'frankie_search_history'
+        this.history = localStorage.getItem(this.HISTORY_KEY) ? localStorage.getItem(this.HISTORY_KEY).split(',') : []
+    }
+
+    addHistory(keyword) {
+        console.log("add:" + keyword)
+        let index = this.history.indexOf(keyword)
+        if (index > -1) {
+            this.history.splice(index, 1)
+        }
+        this.history.unshift(keyword)
+        localStorage.setItem(this.HISTORY_KEY, this.history)
+    }
+
+    renderHistory() {
+        if (this.history.length > 0) {
+            let historyHTML = this.history.map(item => `
+                <li>
+                    <a href="#" class="record-main">
+                        <span class="icon icon-clock"></span>
+                        <span class="record-con ellipsis">${item}</span>
+                        <span class="icon icon-close"></span>
+                    </a>
+                </li>
+            `).join('')
+            historyHTML += `
+                <p class="record-clear-btn record-delete">清除搜索记录</p>
+            `
+            console.log(historyHTML)
+            console.log(this.$history)
+            this.$history.innerHTML = historyHTML
+        } else if (this.history.length === 0){
+            this.$history.innerHTML = ''
+            this.history = []
+        }
     }
 
     onClick(e) {
         if (e.target === this.$input) {
             this.$cancel.classList.remove('hide')
+            this.$hotKey.classList.add('hide')
+            this.$history.classList.remove('hide')
+            this.renderHistory()
         }
         if (e.target === this.$cancel) {
             this.$cancel.classList.add('hide')
             this.$delete.classList.add('hide')
-            this.reset()
+            this.$history.classList.add('hide')
             this.$hotKey.style.display = 'block'
             this.$input.value = ''
+            this.reset()
         }
         if (e.target === this.$delete) {
             this.$input.value = ''
             this.$delete.classList.add('hide')
+        }
+        if (e.target.matches('.icon-close')) {
+            let index = this.history.indexOf(e.target.previousElementSibling.innerHTML)
+            this.history.splice(index, 1)
+            localStorage.setItem(this.HISTORY_KEY, this.history)
+            this.renderHistory()
+        }
+        if (e.target.matches('.record-delete')) {
+            this.history = []
+            localStorage.setItem(this.HISTORY_KEY, this.history)
+            this.$history.innerHTML = ''
         }
     }
 
@@ -44,6 +97,7 @@ class Search {
         }
         if (!keyword) return this.reset()
         if (event.key !== 'Enter') return
+        this.addHistory(keyword)
         this.search(keyword)
     }
 
@@ -65,6 +119,8 @@ class Search {
     search(keyword, page) {
         if (this.fetching) return
         this.keyword = keyword
+        this.$hotKey.style.display = 'none'
+        this.$history.classList.add('hide')
         this.loading()
         fetch(`https://qq-music-api-krplcorlls.now.sh/search?keyword=${this.keyword}&page=${page || this.page}`)
             .then(res => res.json())
@@ -76,7 +132,7 @@ class Search {
             })
             .then(songs => {
                 this.append(songs)
-                this.$hotKey.style.display = 'none'
+                
             })
             .then(() => this.done())
             .catch(() => this.fetching = false)
