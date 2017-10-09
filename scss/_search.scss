@@ -46,31 +46,31 @@
         background: #b1b1b1;
         text-indent: -9999px;
         border-radius: 99px;
+        &::before {
+            width: 10px;
+            height: 2px;
+            margin-left: -5px;
+            margin-top: -1px;
+        }
+        &::after {
+            width: 2px;
+            height: 10px;
+            margin-left: -1px;
+            margin-top: -5px;
+        }
+        &::before,
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border-radius: 8px;
+            background: #fff;
+            -webkit-transform: rotate(45deg);
+        }
     }
-    .icon-delete::before {
-        width: 10px;
-        height: 2px;
-        margin-left: -5px;
-        margin-top: -1px;
-    }
-    .icon-delete::after {
-        width: 2px;
-        height: 10px;
-        margin-left: -1px;
-        margin-top: -5px;
-    }    
-    .icon-delete::before,
-    .icon-delete::after {
-        content: "";
-        display: block;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        border-radius: 8px;
-        background: #fff;
-        -webkit-transform: rotate(45deg);
-    }
-    .search-bar-tip-text{
+    .search-bar-tip-text {
         padding-right: 10px;
         padding-left: 10px;
         font-size: 14px;
@@ -145,6 +145,76 @@
         background-size: 22px 30px;
         background-repeat: no-repeat;
         background-image: url('../images/icon_music.png');
+    }
+}
+
+.record-keys {
+    background: #fff;
+    li {
+        border-top: 1px solid #ddd;
+        padding: 0 15px;
+        .record-main {
+            position: relative;
+            display: block;
+            height: 44px;
+            line-height: 44px;
+            .icon-clock {
+                position: absolute;
+                left: 0;
+                top: 12px;
+                width: 20px;
+                height: 20px;
+                background-image: url('../images/clock_ic.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+                text-indent: -999px;
+            }
+            .record-con {
+                position: absolute;
+                left: 40px;
+                right: 50px;
+                display: block;
+                height: 44px;
+                line-height: 44px;
+                color: #000;
+                font-size: 14px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .icon-close{
+                position: absolute;
+                right: 0;
+                top: 12px;
+                width: 20px;
+                height: 20px;
+                &::before,&::after{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    content: "";
+                    background: rgba(0, 0, 0, .6);
+                    transform: rotate(45deg);
+                }
+                &::before{
+                    width: 17px;
+                    height: 1px;
+                    top: 8px;
+                }
+                &::after{
+                    width: 1px;
+                    height: 17px;
+                    left: 8px;
+                }
+            }
+        }
+    }
+    .record-delete{
+        text-align: center;
+        font-size: 12px;
+        height: 44px;
+        line-height: 44px;
+        color: #47c88a;
     }
 }
 
