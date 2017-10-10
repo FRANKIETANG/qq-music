@@ -9,30 +9,37 @@ class Slider {
     }
 
     render() {
-        this.$el.innerHTML = `<div class="qq-slider-wrap"></div>`
+        this.$el.innerHTML = `<ul class="qq-slider-wrap"></ul>`
         this.$wrap = this.$el.firstElementChild
-        this.$wrap.style.width = `${this.slides.length * 100}%`
         this.$wrap.innerHTML = this.slides.map(slide => `
-            <div class="qq-slider-item">
+            <li class="qq-slider-item">
                 <a href="${ slide.link}">
                     <img src="${ slide.image}">
                 </a>                
-            </div>       
+            </li>       
         `).join('')
+        this.$el.innerHTML += `
+            <div class="dot">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        `
     }
 
     start() {
-        setInterval(this.next.bind(this), this.interval)
-    }
-
-    next() {
-        this.index += 1
-        if (this.index === this.slides.length) {
-            this.$wrap.style.transform = `translate(0)`
-            this.index = 0
-            return
-        }
-        let x = `-${this.index * 100 / this.slides.length}%`
-        this.$wrap.style.transform = `translate(${x})`
+        $('#slider').swipeSlide({
+            continuousScroll: true,
+            speed: 3000,
+            transitionType: 'cubic-bezier(0.22, 0.69, 0.72, 0.88)',
+            firstCallback: function (i, sum, me) {
+                me.find('.dot').children().first().addClass('cur');
+            },
+            callback: function (i, sum, me) {
+                me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
+            }
+        })
     }
 }

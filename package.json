@@ -27,7 +27,8 @@
     "cors": "^2.8.4",
     "express": "^4.15.4",
     "request": "^2.82.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "zepto": "^1.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
