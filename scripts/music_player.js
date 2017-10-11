@@ -62,6 +62,7 @@ class MusicPlayer {
         let url = `https://y.gtimg.cn/music/photo_new/T002R150x150M000${options.albummid}.jpg`
         this.$el.querySelector('.album-cover').src = url
         this.$el.querySelector('.player-background').style.backgroundImage = `url(${url})`
+        this.$el.querySelector('.player-container').style.background = `rgba(34, 46, 33, 0.32)`
 
         if (options.songid) {
             this.songid = options.songid
@@ -69,7 +70,10 @@ class MusicPlayer {
             fetch(`https://frankietangkalun-qq-music-api.now.sh/lyrics?id=${this.songid}`)
                 .then(res => res.json())
                 .then(json => json.lyric)
-                .then(text => this.lyrics.reset(text))
+                .then(text => 
+                    this.lyrics.reset(text),
+                    this.$el.querySelector('.player-container').style.background = `rgba(34, 46, 33, 0.32)`
+                )
                 .catch(() => {})
         }
         this.show()

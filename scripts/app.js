@@ -50,6 +50,8 @@
 
     window.player = player
 
+    window.search = search
+
     function renderSlider(slides) {
         slides = slides.map(slide => {
             return { link: slide.linkUrl, image: slide.picUrl }

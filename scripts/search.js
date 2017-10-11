@@ -49,7 +49,7 @@ class Search {
             console.log(historyHTML)
             console.log(this.$history)
             this.$history.innerHTML = historyHTML
-        } else if (this.history.length === 0){
+        } else if (this.history.length === 0) {
             this.$history.innerHTML = ''
             this.history = []
         }
@@ -84,6 +84,18 @@ class Search {
             this.history = []
             localStorage.setItem(this.HISTORY_KEY, this.history)
             this.$history.innerHTML = ''
+        }
+        if (e.target.matches('.tag-keyword') || e.target.matches('.record-con')) {
+            // console.log(e.target.childNodes[0].nodeValue)
+            this.$input.value = e.target.childNodes[0].nodeValue
+            this.keyword = e.target.childNodes[0].nodeValue
+            this.$delete.classList.remove('hide')
+            this.$cancel.classList.remove('hide')
+            if (this.$input.value.length > 0) {
+                this.addHistory(this.keyword)
+                this.search(this.keyword)
+                this.$hotKey.classList.add('hide')
+            }
         }
     }
 
@@ -132,7 +144,6 @@ class Search {
             })
             .then(songs => {
                 this.append(songs)
-                
             })
             .then(() => this.done())
             .catch(() => this.fetching = false)
