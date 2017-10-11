@@ -83,7 +83,6 @@ a {
     margin-left: 10px; }
   #header .show-player {
     position: absolute;
-    display: inline-block;
     right: 10px;
     top: 8px;
     height: 28px;
@@ -509,7 +508,7 @@ a {
     position: relative;
     display: flex;
     flex-direction: column;
-    background: rgba(0, 0, 0, 0.6); }
+    background: #314030; }
   .player .player-background {
     position: absolute;
     top: 0;

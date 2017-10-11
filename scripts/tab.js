@@ -12,6 +12,8 @@ document.addEventListener('click', function (event) {
 
     let content = document.querySelector(target.dataset.view)
 
+    let playerlogo = document.querySelector('.show-player')
+
     if (content) {
         [].forEach.call(content.parentElement.children, child => {
             child.style.display = 'none'
@@ -20,8 +22,10 @@ document.addEventListener('click', function (event) {
     }
 
     if (target.dataset.view === '.search-view') {
+        playerlogo.classList.remove('hide')
         document.body.style.background = '#fff'
     } else {
+        playerlogo.classList.add('hide')
         document.body.style.background = '#f4f4f4'
     }
 
