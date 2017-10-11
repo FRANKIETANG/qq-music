@@ -66,7 +66,7 @@ class MusicPlayer {
         if (options.songid) {
             this.songid = options.songid
             this.$audio.src = `http://ws.stream.qqmusic.qq.com/${this.songid}.m4a?fromtag=46`
-            fetch(`https://qq-music-api-krplcorlls.now.sh/lyrics?id=${this.songid}`)
+            fetch(`https://frankietangkalun-qq-music-api.now.sh/lyrics?id=${this.songid}`)
                 .then(res => res.json())
                 .then(json => json.lyric)
                 .then(text => this.lyrics.reset(text))

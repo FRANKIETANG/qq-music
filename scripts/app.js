@@ -1,15 +1,15 @@
 (function () {
 
-    fetch('https://qq-music-api-krplcorlls.now.sh') //https://qq-music-api-krplcorlls.now.sh/
+    fetch('https://frankietangkalun-qq-music-api.now.sh') //https://qq-music-api-krplcorlls.now.sh/
         .then(res => res.json())
         .then(render)
 
-    fetch('https://qq-music-api-krplcorlls.now.sh/top')
+    fetch('https://frankietangkalun-qq-music-api.now.sh/top')
         .then(res => res.json())
         .then(json => json.data.topList)
         .then(renderTopList)
 
-    fetch('https://qq-music-api-krplcorlls.now.sh/hotkey')
+    fetch('https://frankietangkalun-qq-music-api.now.sh/hotkey')
         .then(res => res.json())
         .then(json => json.data)
         .then(renderHotKeys)
