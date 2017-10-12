@@ -1,4 +1,8 @@
-class MusicPlayer {
+import { LyricsPlayer } from './lyrics_player.js'
+import { ProgressBar } from './progress_bar.js'
+import { songUrl, lyricsUrl, albumCoverUrl } from './helpers.js'
+
+export class MusicPlayer {
     constructor(el) {
         this.$el = el
         this.$el.addEventListener('click', this)
@@ -9,7 +13,6 @@ class MusicPlayer {
 
     createAudio() {
         this.$audio = document.createElement('audio')
-        // this.$audio.loop = true
         this.$audio.id = `player-${Math.floor(Math.random() * 100)}-${+new Date()}`
         this.$audio.onended = () => {
             this.$audio.play()
@@ -59,15 +62,15 @@ class MusicPlayer {
         this.$el.querySelector('.song-artist').innerText = options.artist
         this.progress.reset(options.duration)
         
-        let url = `https://y.gtimg.cn/music/photo_new/T002R150x150M000${options.albummid}.jpg`
+        let url = albumCoverUrl(options.albummid)
         this.$el.querySelector('.album-cover').src = url
         this.$el.querySelector('.player-background').style.backgroundImage = `url(${url})`
         this.$el.querySelector('.player-container').style.background = `rgba(34, 46, 33, 0.32)`
 
         if (options.songid) {
             this.songid = options.songid
-            this.$audio.src = `http://ws.stream.qqmusic.qq.com/${this.songid}.m4a?fromtag=46`
-            fetch(`https://frankietangkalun-qq-music-api.now.sh/lyrics?id=${this.songid}`)
+            this.$audio.src = songUrl(this.songid)
+            fetch(lyricsUrl(this.songid))
                 .then(res => res.json())
                 .then(json => json.lyric)
                 .then(text => 

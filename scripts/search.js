@@ -1,4 +1,6 @@
-class Search {
+import { searchUrl } from './helpers.js'
+
+export class Search {
     constructor(el) {
         this.$el = el
         this.keyword = ''
@@ -134,7 +136,7 @@ class Search {
         this.$hotKey.style.display = 'none'
         this.$history.classList.add('hide')
         this.loading()
-        fetch(`https://frankietangkalun-qq-music-api.now.sh/search?keyword=${this.keyword}&page=${page || this.page}`)
+        fetch(searchUrl(this.keyword, page || this.page))
             .then(res => res.json())
             .then(json => {
                 this.page = json.data.song.curpage
