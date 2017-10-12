@@ -69,8 +69,10 @@ export class Search {
             this.$delete.classList.add('hide')
             this.$history.classList.add('hide')
             this.$hotKey.style.display = 'block'
+            this.$el.querySelector('.search-loading').classList.remove('show')
             this.$input.value = ''
             this.reset()
+            console.log(this.nomore)
         }
         if (e.target === this.$delete) {
             this.$input.value = ''
@@ -167,10 +169,14 @@ export class Search {
 
     loading() {
         this.fetching = true
+        this.$el.querySelector('.loading-icon').style.display = 'block'
+        this.$el.querySelector('.loading-text').style.display = 'block'
+        this.$el.querySelector('.loading-done').style.display = 'none'
         this.$el.querySelector('.search-loading').classList.add('show')
     }
 
     done() {
+        console.log(this.nomore)
         this.fetching = false
         if (this.nomore) {
             this.$el.querySelector('.loading-icon').style.display = 'none'
