@@ -110,7 +110,7 @@ export class Search {
             this.$delete.classList.add('hide')
         }
         if (!keyword) return this.reset()
-        if (event.key !== 'Enter') return
+        if (event.keyCode !== 13) return
         this.addHistory(keyword)
         this.search(keyword)
     }

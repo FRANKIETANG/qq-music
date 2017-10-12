@@ -1,3 +1,6 @@
+import '../src/zepto.min.js'
+import '../src/swipeSlide.min.js'
+
 export class Slider {
     constructor(options = {}) {
         this.$el = options.el
