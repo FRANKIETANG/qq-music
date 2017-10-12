@@ -63,6 +63,7 @@ export class Search {
             this.$hotKey.classList.add('hide')
             this.$history.classList.remove('hide')
             this.renderHistory()
+            this.nomore = true
         }
         if (e.target === this.$cancel) {
             this.$cancel.classList.add('hide')
@@ -150,7 +151,7 @@ export class Search {
                 this.append(songs)
             })
             .then(() => this.done())
-            .catch(() => this.fetching = false)
+            .catch(() => this.fetching = false)    
     }
 
     append(songs) {
