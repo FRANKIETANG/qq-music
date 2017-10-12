@@ -636,6 +636,23 @@ a {
       background-size: 43px 380px;
       background-position: 6px -321px; }
 
+.loading-box .loading {
+  overflow: hidden;
+  text-align: center;
+  color: #8f8f8f; }
+  .loading-box .loading img {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: 60px auto 50px; }
+  .loading-box .loading p {
+    font-size: 10px; }
+    .loading-box .loading p span {
+      display: inline-block;
+      width: 20px;
+      overflow: hidden;
+      vertical-align: middle; }
+
 body {
   background: #f4f4f4; }
 

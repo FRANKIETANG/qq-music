@@ -1,5 +1,6 @@
 import { TOPLIST_URL } from './contants.js'
 import { lazyload } from './lazyload.js'
+import { loadingDone } from './helpers.js'
 
 export class TopList {
     constructor(el) {
@@ -10,6 +11,7 @@ export class TopList {
         fetch(TOPLIST_URL)
             .then(res => res.json())
             .then(json => this.render(json.data.topList))
+            .then(() => loadingDone())
         return this
     }
 

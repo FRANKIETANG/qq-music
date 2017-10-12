@@ -4,6 +4,7 @@ import { MusicPlayer } from './music_player.js'
 import { Recommend } from './recommend.js'
 import { TopList } from './toplist.js'
 import { hotKey }from'./hotkey.js'
+import { loadingAnimate } from './helpers.js'
 
 let recommend = new Recommend(document.querySelector('.rec-view')).launch()
 let toplist = new TopList(document.querySelector('.rank-view')).launch()
@@ -14,6 +15,8 @@ let player = new MusicPlayer(document.querySelector('.player'))
 document.querySelector('.show-player').addEventListener('click', () => {
     player.show()
 })
+
+loadingAnimate()
 
 onHashChange()
 addEventListener('hashchange', onHashChange)

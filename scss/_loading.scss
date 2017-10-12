@@ -1,0 +1,22 @@
+.loading-box{
+    .loading{
+        overflow: hidden;
+        text-align: center;
+        color: #8f8f8f;
+        img{
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin: 60px auto 50px;
+        }
+        p{
+            font-size: 10px;
+            span{
+                display: inline-block;
+                width: 20px;
+                overflow: hidden;
+                vertical-align: middle;
+            }
+        }
+    }
+}

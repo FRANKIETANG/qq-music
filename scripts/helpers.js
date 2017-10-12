@@ -15,3 +15,13 @@ export function albumCoverUrl(id) {
 export function searchUrl(keyword, page = 1){
     return `${SEARCH_URL}?keyword=${keyword}&page=${page}`
 }
+
+export function loadingAnimate(){
+    document.querySelector('.loading-box').style.display = 'block'
+    document.querySelector('.rec-view').style.display = 'none'
+}
+
+export function loadingDone(){
+    document.querySelector('.loading-box').style.display = 'none'
+    document.querySelector('.rec-view').style.display = 'block'
+}

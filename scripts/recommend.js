@@ -1,6 +1,7 @@
 import { RECOMMEND_URL } from './contants.js'
 import { lazyload } from './lazyload.js'
 import { Slider } from './slider.js'
+import { loadingDone } from './helpers.js'
 
 export class Recommend {
     constructor(el) {
@@ -11,6 +12,7 @@ export class Recommend {
         fetch(RECOMMEND_URL)
             .then(res => res.json())
             .then(json => this.render(json))
+            .then(() => loadingDone())
         return this
     }
 

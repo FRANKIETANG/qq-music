@@ -6,9 +6,9 @@ export class MusicPlayer {
     constructor(el) {
         this.$el = el
         this.$el.addEventListener('click', this)
-        this.createAudio()
         this.lyrics = new LyricsPlayer(this.$el.querySelector('.player-lyrics'))
         this.progress = new ProgressBar(this.$el.querySelector('.progress'), 0, true)
+        this.createAudio()
     }
 
     createAudio() {
@@ -61,7 +61,7 @@ export class MusicPlayer {
         this.$el.querySelector('.song-name').innerText = options.songname
         this.$el.querySelector('.song-artist').innerText = options.artist
         this.progress.reset(options.duration)
-        
+
         let url = albumCoverUrl(options.albummid)
         this.$el.querySelector('.album-cover').src = url
         this.$el.querySelector('.player-background').style.backgroundImage = `url(${url})`
@@ -73,11 +73,15 @@ export class MusicPlayer {
             fetch(lyricsUrl(this.songid))
                 .then(res => res.json())
                 .then(json => json.lyric)
-                .then(text => 
+                .then(text =>
                     this.lyrics.reset(text),
-                    this.$el.querySelector('.player-container').style.background = `rgba(34, 46, 33, 0.32)`
+                    this.$el.querySelector('.progress-bar-progress').style.transform = `translateX(-100%)`,
+                    this.$el.querySelector('.progress-elapsed').innerText = `0:00`,
+                    this.$el.querySelector('.player-container').style.background = `rgba(34, 46, 33, 0.32)`,
+                    this.$el.querySelector('.icon-action').classList.add('icon-play'),
+                    this.$el.querySelector('.icon-action').classList.remove('icon-pause')
                 )
-                .catch(() => {})
+                .catch(() => { })
         }
         this.show()
     }
