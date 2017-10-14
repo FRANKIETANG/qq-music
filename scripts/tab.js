@@ -22,6 +22,7 @@ document.addEventListener('click', function (event) {
     }
 
     if (target.dataset.view === '.search-view') {
+        document.querySelector('.hot-keys').style.display = 'block'
         playerlogo.classList.remove('hide')
         document.body.style.background = '#fff'
     } else {
