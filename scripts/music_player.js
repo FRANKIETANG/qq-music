@@ -58,8 +58,8 @@ export class MusicPlayer {
     play(options = {}) {
         if (!options) return
 
-        this.$el.querySelector('.song-name').innerText = options.songname
-        this.$el.querySelector('.song-artist').innerText = options.artist
+        this.$el.querySelector('.song-name').innerText = decodeURIComponent(options.songname)
+        this.$el.querySelector('.song-artist').innerText = decodeURIComponent(options.artist)
         this.progress.reset(options.duration)
 
         let url = albumCoverUrl(options.albummid)
@@ -69,7 +69,8 @@ export class MusicPlayer {
 
         if (options.songid) {
             this.songid = options.songid
-            this.$audio.src = songUrl(this.songid)
+            this.songmid = options.songmid
+            this.$audio.src = songUrl(this.songmid)
             fetch(lyricsUrl(this.songid))
                 .then(res => res.json())
                 .then(json => json.lyric)

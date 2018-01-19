@@ -5,7 +5,7 @@ export function lyricsUrl(songid){
 }
 
 export function songUrl(id) {
-    return `http://ws.stream.qqmusic.qq.com/${id}.m4a?fromtag=46`
+    return `http://isure.stream.qqmusic.qq.com/C100${id}.m4a?fromtag=32`
 }
 
 export function albumCoverUrl(id) {
